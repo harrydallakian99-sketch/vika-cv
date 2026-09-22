@@ -1,0 +1,460 @@
+<title>Vika Gezalyan Orbit</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Onest:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Armenian:wght@400;500;700;900&display=swap">
+<style>
+@property --n1{syntax:'<color>';inherits:true;initial-value:#5a1140}
+@property --n2{syntax:'<color>';inherits:true;initial-value:#2b1b5a}
+:root{
+  --ink:#07060f; --star:#f3f0ff; --dim:#a9a3c9; --line:rgba(243,240,255,.22);
+  --rose:#ff4d8d; --ice:#8fd8ff; --violet:#b79bff; --mint:#6ff0d0; --gold:#ffc46b;
+  --acc:var(--rose);
+  --display:'Unbounded','Noto Sans Armenian','Arial Black',system-ui,sans-serif;
+  --body:'Onest','Noto Sans Armenian','Helvetica Neue',Arial,sans-serif;
+  --mono:'JetBrains Mono','Noto Sans Armenian',ui-monospace,Menlo,monospace;
+}
+html,body{height:100%}
+body{background:var(--ink);color:var(--star);font-family:var(--body);overflow:hidden;overscroll-behavior:none;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+
+#sky{position:fixed;inset:0;width:100%;height:100%;display:block}
+.nebula{position:fixed;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:.6;
+  background:radial-gradient(60% 50% at 18% 22%,var(--n1),transparent 70%),radial-gradient(55% 50% at 86% 80%,var(--n2),transparent 70%);
+  transition:--n1 1.3s ease,--n2 1.3s ease}
+.flash{position:fixed;inset:0;pointer-events:none;opacity:0;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.9),rgba(255,255,255,0) 55%)}
+.flash.on{animation:flash .9s ease-out}
+@keyframes flash{0%{opacity:0}45%{opacity:.28}100%{opacity:0}}
+
+/* ---------- slides ---------- */
+.stage{position:fixed;inset:0;overflow:hidden}
+.slide{position:absolute;inset:0;visibility:hidden;pointer-events:none;display:grid;align-items:center;
+  padding-block:calc(76px + env(safe-area-inset-top,0px)) calc(92px + env(safe-area-inset-bottom,0px));
+  padding-inline:max(24px,7vw)}
+.slide.is-active{visibility:visible;pointer-events:auto}
+.content{position:relative;z-index:2;max-width:760px;display:flex;flex-direction:column;gap:22px;transform-origin:50% 50%}
+.slide--center .content{margin-inline:auto;text-align:center;align-items:center}
+
+.planet{position:absolute;z-index:1;border-radius:50%;width:var(--d);height:var(--d);
+  background:radial-gradient(circle at 30% 28%,var(--p1),var(--p2) 48%,var(--p3) 82%);
+  box-shadow:inset -40px -46px 110px rgba(0,0,0,.78),0 0 90px -10px var(--glow)}
+.planet::before{content:"";position:absolute;inset:0;border-radius:50%;mix-blend-mode:overlay;opacity:.5;
+  background:repeating-linear-gradient(172deg,rgba(255,255,255,.22) 0 3%,transparent 3% 9%,rgba(0,0,0,.25) 9% 11%,transparent 11% 19%)}
+.planet--ring::after{content:"";position:absolute;left:-38%;right:-38%;top:38%;height:24%;border-radius:50%;
+  border:2px solid rgba(183,155,255,.55);border-top-color:transparent;transform:rotate(-18deg);box-shadow:0 0 24px rgba(183,155,255,.35)}
+.planet--sun{box-shadow:0 0 140px 30px var(--glow),inset -20px -24px 80px rgba(120,30,0,.55)}
+.planet--sun::before{opacity:.18}
+
+.p0{--d:min(74vh,62vw);right:-12vw;bottom:-22vh;--p1:#ffc1dc;--p2:#ff4d8d;--p3:#3c0a2c;--glow:rgba(255,77,141,.55)}
+.p1{--d:min(58vh,52vw);right:-6vw;top:8vh;--p1:#e6f7ff;--p2:#56b9f0;--p3:#0b1f45;--glow:rgba(143,216,255,.45)}
+.p2{--d:min(34vh,34vw);right:9vw;top:9vh;--p1:#efe6ff;--p2:#8e6cf2;--p3:#1c0d4a;--glow:rgba(183,155,255,.5)}
+.p3{--d:min(66vh,58vw);left:-16vw;bottom:-26vh;--p1:#dffff6;--p2:#2fc7a6;--p3:#05302f;--glow:rgba(111,240,208,.4)}
+.p4{--d:min(46vh,60vw);left:50%;top:50%;margin:calc(var(--d)/-2) 0 0 calc(var(--d)/-2);--p1:#fff3d6;--p2:#ffb347;--p3:#ff6a2b;--glow:rgba(255,160,70,.55);opacity:.5}
+
+/* warp choreography */
+.leave-fwd .content{animation:cOutF .76s cubic-bezier(.6,0,.9,.4) both}
+.leave-fwd .planet{animation:pOutF .76s cubic-bezier(.6,0,.9,.4) both}
+.enter-fwd .content{animation:cInF .88s cubic-bezier(.1,.7,.2,1) both}
+.enter-fwd .planet{animation:pInF .88s cubic-bezier(.1,.7,.2,1) both}
+.leave-back .content{animation:cInF .76s cubic-bezier(.6,0,.9,.4) reverse both}
+.leave-back .planet{animation:pInF .76s cubic-bezier(.6,0,.9,.4) reverse both}
+.enter-back .content{animation:cOutF .88s cubic-bezier(.1,.7,.2,1) reverse both}
+.enter-back .planet{animation:pOutF .88s cubic-bezier(.1,.7,.2,1) reverse both}
+@keyframes cOutF{to{transform:scale(2.6);opacity:0;filter:blur(10px)}}
+@keyframes pOutF{to{transform:scale(7);opacity:0}}
+@keyframes cInF{from{transform:scale(.35);opacity:0;filter:blur(6px)}}
+@keyframes pInF{from{transform:scale(.02);opacity:0}}
+
+/* ---------- type ---------- */
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--acc)}
+h1,h2{font-family:var(--display);margin:0;text-wrap:balance;line-height:1.02}
+h1{font-weight:900;font-size:clamp(44px,9.2vw,128px);text-transform:uppercase;letter-spacing:-.02em}
+h1 span{display:block}
+h1 .out{color:transparent;-webkit-text-stroke:1.5px var(--star)}
+h2{font-weight:700;font-size:clamp(26px,4.4vw,54px);letter-spacing:-.01em}
+h2 em{font-style:normal;color:var(--acc)}
+p{margin:0;font-size:clamp(15px,1.5vw,19px);line-height:1.6;color:#dcd7f2;max-width:58ch;text-shadow:0 1px 12px rgba(7,6,15,.8)}
+.roles{display:flex;flex-wrap:wrap;gap:8px 10px;padding:0;margin:0;list-style:none}
+.roles li{font-family:var(--mono);font-size:13px;padding:7px 12px;border:1px solid var(--line);border-radius:99px;background:rgba(7,6,15,.45);backdrop-filter:blur(6px)}
+.coords{font-family:var(--mono);font-size:12.5px;color:var(--dim);letter-spacing:.04em;display:flex;flex-wrap:wrap;gap:6px 18px}
+.coords b{color:var(--star);font-weight:500}
+.cta{align-self:flex-start;font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.04em;padding:16px 26px;border-radius:99px;
+  background:var(--acc);color:#16040c;transition:transform .2s,box-shadow .2s;box-shadow:0 0 0 0 var(--acc)}
+.cta:hover{transform:translateY(-2px);box-shadow:0 10px 40px -8px var(--acc)}
+.slide--center .cta{align-self:center}
+
+.facts{display:flex;flex-wrap:wrap;gap:14px 34px;margin-top:6px}
+.facts div{display:flex;flex-direction:column;gap:4px}
+.facts dt{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.facts dd{margin:0;font-family:var(--display);font-size:clamp(16px,1.8vw,22px)}
+
+.skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 36px;margin:0;padding:0;list-style:none;max-width:720px}
+.skills li{display:grid;grid-template-columns:14px 1fr;gap:4px 12px;align-items:baseline;padding-top:14px;border-top:1px solid var(--line)}
+.skills i{width:10px;height:10px;border-radius:50%;background:var(--c);box-shadow:0 0 12px var(--c);align-self:center}
+.skills strong{overflow-wrap:anywhere;font-family:var(--display);font-weight:700;font-size:clamp(14px,1.5vw,18px)}
+.skills span{grid-column:2;font-size:14px;color:var(--dim);line-height:1.45}
+
+.reel-strip{display:flex;gap:14px;overflow-x:auto;max-width:100%;padding-bottom:8px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.tile{flex:none;height:clamp(210px,42vh,340px);aspect-ratio:9/16;position:relative;padding:0;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#0d0b1a;display:block;transition:transform .25s,border-color .25s}
+.tile--p{aspect-ratio:3/4}
+[hidden]{display:none!important}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters button{font-family:var(--mono);font-size:12px;letter-spacing:.06em;padding:7px 13px;border:1px solid var(--line);border-radius:99px;color:var(--dim);background:rgba(7,6,15,.45);transition:all .2s}
+.filters button:hover{color:var(--star);border-color:var(--mint)}
+.filters button[aria-pressed="true"]{background:var(--mint);border-color:var(--mint);color:#04211d}
+.tile:hover{transform:translateY(-4px);border-color:var(--mint)}
+.tile img,.tile video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.tile .cap{position:absolute;left:0;right:0;bottom:0;padding:34px 12px 11px;text-align:left;display:flex;flex-direction:column;gap:3px;background:linear-gradient(transparent,rgba(7,6,15,.88))}
+.tile .cap b{font-family:var(--mono);font-weight:500;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mint)}
+.tile .cap span{font-size:13px;color:var(--star);line-height:1.25}
+.tile--v::after{content:"";position:absolute;right:11px;top:11px;width:26px;height:26px;border-radius:50%;background:rgba(7,6,15,.6) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Cpath d='M10 8l9 5-9 5z' fill='%23f3f0ff'/%3E%3C/svg%3E") center/contain no-repeat;backdrop-filter:blur(4px)}
+.lightbox{position:fixed;inset:0;z-index:20;background:rgba(7,6,15,.93);display:grid;place-items:center;padding:calc(20px + env(safe-area-inset-top,0px)) 16px calc(20px + env(safe-area-inset-bottom,0px));backdrop-filter:blur(8px)}
+.lightbox[hidden]{display:none}
+.lightbox img,.lightbox video{max-width:100%;max-height:100%;min-height:0;border-radius:14px;box-shadow:0 0 80px -10px rgba(111,240,208,.35)}
+.lightbox .box{width:100%;height:100%;display:grid;place-items:center;min-height:0}
+.lightbox .x{position:absolute;right:18px;top:calc(18px + env(safe-area-inset-top,0px));font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--star);padding:9px 14px;border:1px solid var(--line);border-radius:99px;background:rgba(7,6,15,.6)}
+.reel{flex:none;height:clamp(210px,42vh,340px);aspect-ratio:9/16;position:relative;border:1px dashed var(--line);border-radius:14px;
+  background:linear-gradient(160deg,rgba(111,240,208,.10),rgba(7,6,15,.55));display:flex;flex-direction:column;justify-content:space-between;padding:12px;backdrop-filter:blur(4px)}
+.reel::before{content:"";position:absolute;left:50%;top:50%;translate:-35% -50%;border-left:20px solid rgba(243,240,255,.75);border-block:13px solid transparent}
+.reel b{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.12em;color:var(--mint)}
+.reel span{font-size:12.5px;color:var(--dim);line-height:1.35}
+.note{font-family:var(--mono);font-size:12px;color:var(--dim)}
+
+.links{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.links a{font-family:var(--mono);font-size:14px;color:var(--star);text-decoration:none;padding:13px 20px;border:1px solid var(--line);border-radius:99px;background:rgba(7,6,15,.55);backdrop-filter:blur(6px);transition:border-color .2s,color .2s}
+.links a:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ---------- viewfinder HUD ---------- */
+.hud{position:fixed;inset:0;pointer-events:none;z-index:5;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--dim)}
+.hud>*{pointer-events:auto}
+.corner{position:absolute;width:26px;height:26px;border:1.5px solid rgba(243,240,255,.55);pointer-events:none}
+.c-tl{left:14px;top:calc(14px + env(safe-area-inset-top,0px));border-right:0;border-bottom:0}
+.c-tr{right:14px;top:calc(14px + env(safe-area-inset-top,0px));border-left:0;border-bottom:0}
+.c-bl{left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));border-right:0;border-top:0}
+.c-br{right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));border-left:0;border-top:0}
+.rec{position:absolute;left:30px;top:calc(28px + env(safe-area-inset-top,0px));display:flex;gap:10px;align-items:center}
+.rec i{width:9px;height:9px;border-radius:50%;background:#ff3b3b;animation:blink 1.2s steps(2) infinite}
+@keyframes blink{50%{opacity:.15}}
+.rec #tc{color:var(--star);font-variant-numeric:tabular-nums}
+.lang{position:absolute;right:30px;top:calc(22px + env(safe-area-inset-top,0px));display:flex;border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.lang button{padding:6px 11px;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;color:var(--dim)}
+.lang button[aria-pressed="true"]{background:var(--star);color:var(--ink)}
+.route{position:absolute;right:26px;top:50%;translate:0 -50%;display:flex;flex-direction:column;gap:14px;align-items:flex-end}
+.route button{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);padding:2px 0}
+.route button::after{content:"";width:9px;height:9px;border-radius:50%;border:1.5px solid var(--dim);transition:all .3s}
+.route button span{opacity:0;transform:translateX(6px);transition:all .25s}
+.route button:hover span,.route button[aria-current="true"] span{opacity:1;transform:none}
+.route button[aria-current="true"]{color:var(--star)}
+.route button[aria-current="true"]::after{background:var(--acc);border-color:var(--acc);box-shadow:0 0 14px var(--acc);scale:1.25}
+.foot{position:absolute;left:30px;right:30px;bottom:calc(26px + env(safe-area-inset-bottom,0px));display:flex;justify-content:space-between;align-items:center;gap:12px;pointer-events:none}
+.foot>*{pointer-events:auto}
+.scene{color:var(--star);font-variant-numeric:tabular-nums}
+.next{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--star)}
+.next svg{animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(4px)}}
+.specs{text-align:right}
+
+@media (max-width:720px){
+  .route{right:12px;gap:16px}
+  .route button span{display:none}
+  .slide{padding-inline:24px 40px}
+  .skills{grid-template-columns:1fr 1fr;gap:12px 16px}
+  .skills span{font-size:12.5px}
+  .specs{display:none}
+  .planet{opacity:.75}
+  .p4{opacity:.4}
+  .content{gap:16px}
+}
+@media (max-height:640px){.skills span{display:none}}
+@media (prefers-reduced-motion:reduce){
+  .slide .content,.slide .planet{animation:none!important}
+  .next svg,.rec i{animation:none}
+}
+</style>
+
+<canvas id="sky" aria-hidden="true"></canvas>
+<div class="nebula" id="nebula" aria-hidden="true"></div>
+
+<main class="stage" id="stage">
+
+  <section class="slide is-active" data-name="Старт" data-name-en="Launch" aria-label="Старт">
+    <div class="planet p0" aria-hidden="true"></div>
+    <div class="content">
+      <div class="eyebrow" data-en="Interactive CV · 2026">Интерактивное CV · 2026</div>
+      <h1><span data-en="Vika">Вика</span><span class="out" data-en="Gezalyan">Гёзалян</span></h1>
+      <ul class="roles">
+        <li data-en="Content producer">Продюсер контента</li>
+        <li data-en="Reels maker">Reels-мейкер</li>
+        <li data-en="AI creator">AI-креатор</li>
+        <li>SMM</li>
+        <li data-en="On-site shoots">Выездные съёмки</li>
+      </ul>
+      <div class="coords">
+        <span><b data-en="Ijevan, Armenia">Иджеван, Армения</b></span>
+        <span>40.88° N · 45.15° E</span>
+        <span><b data-en="Open to relocation">Готова к релокации</b></span>
+      </div>
+      <button class="cta" id="launch" data-en="Start the flight →">Начать полёт →</button>
+    </div>
+  </section>
+
+  <section class="slide" data-name="Кто я" data-name-en="About" aria-label="Кто я">
+    <div class="planet p1" aria-hidden="true"></div>
+    <div class="content">
+      <div class="eyebrow" data-en="Scene 02 · About">Сцена 02 · Кто я</div>
+      <h2><span data-en="I shoot, edit and generate content ">Снимаю, монтирую и генерирую контент, </span><em data-en="people watch to the end">который досматривают</em></h2>
+      <p data-en="I run social media, produce shoots and build reels end to end — from the idea and script to the edit and publishing. Where a shoot is impossible or too expensive, I solve it with neural networks: AI video and AI photo.">Веду соцсети, продюсирую съёмки и собираю рилсы под ключ — от идеи и сценария до монтажа и публикации. Там, где съёмка невозможна или слишком дорога, закрываю задачу нейросетями: ИИ-видео и ИИ-фото.</p>
+      <p data-en="I travel to shoots: I organise the location, crew and process, and produce from brief to finished reel.">Выезжаю на съёмки: организую локацию, команду и процесс, продюсирую от брифа до готового ролика.</p>
+      <dl class="facts">
+        <div><dt data-en="Age">Возраст</dt><dd data-en="22">22 года</dd></div>
+        <div><dt data-en="Base">База</dt><dd data-en="Ijevan, Armenia">Иджеван, Армения</dd></div>
+        <div><dt data-en="Status">Статус</dt><dd data-en="Open to relocation">Готова к релокации</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="slide" data-name="Навыки" data-name-en="Skills" aria-label="Навыки">
+    <div class="planet planet--ring p2" aria-hidden="true"></div>
+    <div class="content">
+      <div class="eyebrow" data-en="Scene 03 · Skills">Сцена 03 · Навыки</div>
+      <h2><span data-en="Six orbits — ">Шесть орбит — </span><em data-en="one production">один продакшн</em></h2>
+      <ul class="skills">
+        <li style="--c:var(--rose)"><i></i><strong>SMM</strong><span data-en="Strategy, content plan, account management">Стратегия, контент-план, ведение аккаунтов</span></li>
+        <li style="--c:var(--gold)"><i></i><strong data-en="Shoot production">Продюсирование съёмок</strong><span data-en="Idea, script, crew, location — reels end to end">Идея, сценарий, команда, локация — рилсы под ключ</span></li>
+        <li style="--c:var(--violet)"><i></i><strong data-en="Reels making">Reels-мейкинг</strong><span data-en="Hooks, pacing, trends, retention">Хуки, динамика, тренды, удержание</span></li>
+        <li style="--c:var(--ice)"><i></i><strong data-en="Editing">Монтаж</strong><span data-en="Cuts, rhythm, captions, sound, color">Склейки, ритм, титры, звук, цвет</span></li>
+        <li style="--c:var(--mint)"><i></i><strong data-en="AI video">ИИ-видео</strong><span data-en="Scenes and clips generated with neural networks">Сцены и ролики, сгенерированные нейросетями</span></li>
+        <li style="--c:#ff9ecb"><i></i><strong data-en="AI photo">ИИ-фото</strong><span data-en="Photo sets and visuals without a shoot">Фотосеты и визуалы без съёмки</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide" data-name="Работы" data-name-en="Works" aria-label="Работы">
+    <div class="planet p3" aria-hidden="true"></div>
+    <div class="content" style="max-width:900px">
+      <div class="eyebrow" data-en="Scene 04 · Works">Сцена 04 · Работы</div>
+      <h2><span data-en="Works ">Работы </span><em data-en="in frame">в кадре</em></h2>
+      <div class="filters" id="filters" role="group" aria-label="Filter">
+        <button data-f="all" aria-pressed="true" data-en="All">Все</button>
+        <button data-f="shoot" aria-pressed="false" data-en="Shoots">Съёмка</button>
+        <button data-f="aiv" aria-pressed="false" data-en="AI video">ИИ-видео</button>
+        <button data-f="edit" aria-pressed="false" data-en="Editing">Монтаж</button>
+        <button data-f="aip" aria-pressed="false" data-en="AI photo">ИИ-фото</button>
+      </div>
+      <div class="reel-strip" id="strip">
+        <button class="tile tile--v" data-cat="shoot" data-src="assets/aura.mp4" aria-label="Aura — reel">
+          <video muted loop playsinline preload="none" poster="assets/aura.jpg" src="assets/aura.mp4"></video>
+          <span class="cap"><b data-en="Production · shoot">Продюсирование · съёмка</b><span data-en="Aura · flower shop">Аура · магазин цветов</span></span>
+        </button>
+        <button class="tile tile--v" data-cat="shoot" data-src="assets/sungarden-reel.mp4" aria-label="Sun Garden — reel">
+          <video muted loop playsinline preload="none" poster="assets/sungarden-reel.jpg" src="assets/sungarden-reel.mp4"></video>
+          <span class="cap"><b data-en="Production · shoot">Продюсирование · съёмка</b><span>Sun Garden</span></span>
+        </button>
+        <button class="tile tile--v" data-cat="aiv" data-src="assets/chika.mp4" aria-label="Chika — AI video">
+          <video muted loop playsinline preload="none" poster="assets/chika.jpg" src="assets/chika.mp4"></video>
+          <span class="cap"><b data-en="AI video">ИИ-видео</b><span data-en="Chika · makeup fixing spray">Chika · фиксатор макияжа</span></span>
+        </button>
+        <button class="tile tile--v" data-cat="aiv" data-src="assets/sungarden.mp4" aria-label="Sun Garden — AI video">
+          <video muted loop playsinline preload="none" poster="assets/sungarden.jpg" src="assets/sungarden.mp4"></video>
+          <span class="cap"><b data-en="AI video">ИИ-видео</b><span data-en="Sun Garden · chef">Sun Garden · шеф-повар</span></span>
+        </button>
+        <button class="tile tile--v" data-cat="aiv" data-src="assets/blogger.mp4" aria-label="Blogger — AI video">
+          <video muted loop playsinline preload="none" poster="assets/blogger.jpg" src="assets/blogger.mp4"></video>
+          <span class="cap"><b data-en="AI video">ИИ-видео</b><span data-en="For a blogger">Для блогера</span></span>
+        </button>
+        <button class="tile tile--v" data-cat="aiv" data-src="assets/bekbeer.mp4" aria-label="BEK BEER — AI video">
+          <video muted loop playsinline preload="none" poster="assets/bekbeer.jpg" src="assets/bekbeer.mp4"></video>
+          <span class="cap"><b data-en="AI video">ИИ-видео</b><span>BEK BEER</span></span>
+        </button>
+        <button class="tile tile--v" data-cat="edit" data-src="assets/bekbeer-edit.mp4" aria-label="BEK BEER — editing 1">
+          <video muted loop playsinline preload="none" poster="assets/bekbeer-edit.jpg" src="assets/bekbeer-edit.mp4"></video>
+          <span class="cap"><b data-en="Editing">Монтаж</b><span>BEK BEER</span></span>
+        </button>
+        <button class="tile tile--v" data-cat="edit" data-src="assets/bekbeer-edit2.mp4" aria-label="BEK BEER — editing 2">
+          <video muted loop playsinline preload="none" poster="assets/bekbeer-edit2.jpg" src="assets/bekbeer-edit2.mp4"></video>
+          <span class="cap"><b data-en="Editing">Монтаж</b><span>BEK BEER</span></span>
+        </button>
+        <button class="tile tile--p" data-cat="aip" data-src="assets/bigfood-1.jpg" aria-label="BigFood restaurant — AI photo 1">
+          <img src="assets/bigfood-1.jpg" alt="" loading="lazy">
+          <span class="cap"><b data-en="AI photo">ИИ-фото</b><span>BigFood restaurant</span></span>
+        </button>
+        <button class="tile tile--p" data-cat="aip" data-src="assets/bigfood-2.jpg" aria-label="BigFood restaurant — AI photo 2">
+          <img src="assets/bigfood-2.jpg" alt="" loading="lazy">
+          <span class="cap"><b data-en="AI photo">ИИ-фото</b><span>BigFood restaurant</span></span>
+        </button>
+        <div class="reel" id="nextTile"><b>NEXT</b><span data-en="More works coming soon">Скоро ещё работы</span></div>
+      </div>
+      <div class="note" data-en="Tap a frame — it opens full screen, video with sound.">Тап по кадру — откроется на весь экран, видео со звуком.</div>
+    </div>
+  </section>
+
+  <section class="slide slide--center" data-name="Контакт" data-name-en="Contact" aria-label="Контакт">
+    <div class="planet planet--sun p4" aria-hidden="true"></div>
+    <div class="content">
+      <div class="eyebrow" data-en="Scene 05 · Contact">Сцена 05 · Контакт</div>
+      <h2><span data-en="Let's get ">Выйти </span><em data-en="in touch">на связь</em></h2>
+      <p data-en="Open to projects and job offers with relocation.">Открыта к проектам и предложениям о работе с релокацией.</p>
+      <div class="links">
+        <a href="https://t.me/vika_gyozalyan" target="_blank" rel="noopener">Telegram · @vika_gyozalyan</a>
+        <a href="https://instagram.com/vvvikas_blog" target="_blank" rel="noopener">Instagram · @vvvikas_blog</a>
+        <a href="tel:+37493660683">+374 93 660 683</a>
+      </div>
+      <button class="cta" id="again" data-en="↑ Back to launch">↑ К старту</button>
+    </div>
+  </section>
+</main>
+
+<div class="flash" id="flash" aria-hidden="true"></div>
+<div class="lightbox" id="lb" hidden role="dialog" aria-modal="true"><div class="box" id="lbBox"></div><button class="x" id="lbX">ESC ✕</button></div>
+
+<div class="hud">
+  <i class="corner c-tl"></i><i class="corner c-tr"></i><i class="corner c-bl"></i><i class="corner c-br"></i>
+  <div class="rec"><i></i><span>REC</span><span id="tc">00:00:00:00</span></div>
+  <div class="lang" role="group" aria-label="Language">
+    <button id="hy" aria-pressed="true">ՀԱՅ</button><button id="ru" aria-pressed="false">RU</button><button id="en" aria-pressed="false">EN</button>
+  </div>
+  <nav class="route" id="route" aria-label="Маршрут"></nav>
+  <div class="foot">
+    <span class="scene" id="scene">01 / 05</span>
+    <button class="next" id="next"><span id="hint" data-en="scroll · swipe · ↓">листай · свайп · ↓</span>
+      <svg width="12" height="14" viewBox="0 0 12 14" fill="none" aria-hidden="true"><path d="M6 1v11M1 8l5 5 5-5" stroke="currentColor" stroke-width="1.5"/></svg></button>
+    <span class="specs">9:16 · 4K · 25 FPS</span>
+  </div>
+</div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide')),cur=0,lock=false,lang='ru';
+  var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var scenes=[
+    {acc:'var(--rose)',n1:'#5a1140',n2:'#2b1b5a'},
+    {acc:'var(--ice)',n1:'#0f3a6b',n2:'#2b1b5a'},
+    {acc:'var(--violet)',n1:'#3a1f86',n2:'#5a1140'},
+    {acc:'var(--mint)',n1:'#0b4a48',n2:'#1d2a6b'},
+    {acc:'var(--gold)',n1:'#6b3208',n2:'#5a1140'}];
+  var nebula=document.getElementById('nebula'),flash=document.getElementById('flash'),route=document.getElementById('route');
+
+  /* ---------- starfield ---------- */
+  var cv=document.getElementById('sky'),ctx=cv.getContext('2d'),W=0,H=0,stars=[],IDLE=.018,WARP=1.5,v=IDLE,target=IDLE,mx=0,my=0;
+  var tint=['#ffffff','#ffffff','#bfe9ff','#ffc1dc','#d9ccff'];
+  function resize(){var d=Math.min(window.devicePixelRatio||1,2);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*d;cv.height=H*d;ctx.setTransform(d,0,0,d,0,0);
+    var n=W<720?420:900;while(stars.length<n)stars.push(spawn({},false));stars.length=n}
+  function spawn(s,edge){s.x=Math.random()*2-1;s.y=Math.random()*2-1;s.z=edge===1?1:edge===-1?Math.random()*.25+.04:Math.random()*.96+.04;s.pz=s.z;s.c=tint[(Math.random()*tint.length)|0];return s}
+  var last=performance.now();
+  function frame(now){
+    var dt=Math.min((now-last)/1000,.05);last=now;
+    v+=(target-v)*Math.min(1,dt*(Math.abs(target)>Math.abs(v)?5:3.2));
+    var fast=Math.abs(v)>.09;
+    ctx.fillStyle=fast?'rgba(7,6,15,.34)':'#07060f';ctx.fillRect(0,0,W,H);
+    var f=Math.max(W,H)*.5,cx=W/2+mx*26,cy=H/2+my*26;
+    ctx.lineCap='round';
+    for(var i=0;i<stars.length;i++){var s=stars[i];s.pz=s.z;s.z-=v*dt;
+      if(s.z<=.03){spawn(s,1);continue} if(s.z>1){spawn(s,-1);continue}
+      var sx=cx+s.x/s.z*f,sy=cy+s.y/s.z*f;
+      if(sx<-50||sx>W+50||sy<-50||sy>H+50){if(v>0)spawn(s,1);continue}
+      var k=1-s.z,a=Math.min(1,k*1.5+.12);ctx.globalAlpha=a;
+      if(fast){var px=cx+s.x/s.pz*f,py=cy+s.y/s.pz*f;ctx.strokeStyle=s.c;ctx.lineWidth=k*2.2+.4;ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(sx,sy);ctx.stroke()}
+      else{ctx.fillStyle=s.c;var r=k*1.7+.3;ctx.beginPath();ctx.arc(sx,sy,r,0,6.283);ctx.fill()}
+    }
+    ctx.globalAlpha=1;
+    tick(now);
+    requestAnimationFrame(frame);
+  }
+  addEventListener('resize',resize);
+  addEventListener('pointermove',function(e){mx=(e.clientX/W-.5)*-2;my=(e.clientY/H-.5)*-2});
+
+  /* ---------- timecode ---------- */
+  var tc=document.getElementById('tc'),t0=performance.now(),lastTc='';
+  function p(n){return(n<10?'0':'')+n}
+  function tick(now){var t=(now-t0)/1000,s=p(Math.floor(t/3600))+':'+p(Math.floor(t/60)%60)+':'+p(Math.floor(t)%60)+':'+p(Math.floor((t%1)*25));if(s!==lastTc){tc.textContent=s;lastTc=s}}
+
+  /* ---------- navigation ---------- */
+  function setScene(n){var s=scenes[n];document.documentElement.style.setProperty('--acc',s.acc);nebula.style.setProperty('--n1',s.n1);nebula.style.setProperty('--n2',s.n2);
+    document.getElementById('scene').textContent=p(n+1)+' / '+p(slides.length);
+    [].forEach.call(route.children,function(b,i){b.setAttribute('aria-current',i===n?'true':'false')});
+    document.getElementById('next').style.visibility=n===slides.length-1?'hidden':'visible';
+    playTiles(n)}
+  var tileVids=[].slice.call(document.querySelectorAll('.tile video'));
+  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target._off=e.intersectionRatio<.4});playTiles(cur)},{root:document.getElementById('strip'),threshold:[0,.4,1]});tileVids.forEach(function(v){io.observe(v)})}
+  function playTiles(n){tileVids.forEach(function(v){if(slides[n].contains(v)&&lb.hidden&&!v.parentNode.hidden&&!v._off){var p=v.play();if(p&&p.catch)p.catch(function(){})}else v.pause()})}
+  var lb=document.getElementById('lb'),lbBox=document.getElementById('lbBox');
+  function openLb(src){lbBox.innerHTML='';var el;
+    if(/\.mp4$/.test(src)){el=document.createElement('video');el.src=src;el.controls=true;el.loop=true;el.autoplay=true;el.playsInline=true;el.setAttribute('playsinline','')}
+    else{el=document.createElement('img');el.src=src;el.alt=''}
+    lbBox.appendChild(el);lb.hidden=false;tileVids.forEach(function(v){v.pause()});document.getElementById('lbX').focus()}
+  function closeLb(){if(lb.hidden)return;lbBox.innerHTML='';lb.hidden=true;playTiles(cur)}
+  [].forEach.call(document.querySelectorAll('.tile'),function(t){t.addEventListener('click',function(){openLb(t.dataset.src)})});
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)playTiles(cur)});
+  var fBtns=[].slice.call(document.querySelectorAll('#filters button'));
+  fBtns.forEach(function(b){b.addEventListener('click',function(){var f=b.dataset.f;
+    fBtns.forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+    [].forEach.call(document.querySelectorAll('.tile'),function(t){t.hidden=f!=='all'&&t.dataset.cat!==f});
+    document.getElementById('nextTile').hidden=f!=='all';document.getElementById('strip').scrollLeft=0;playTiles(cur)})});
+  lb.addEventListener('click',function(e){if(e.target.tagName!=='VIDEO')closeLb()});
+  addEventListener('keydown',function(e){if(e.key==='Escape')closeLb()});
+  function go(n){
+    if(!lb.hidden||lock||n<0||n>=slides.length||n===cur)return;
+    var a=slides[cur],b=slides[n],dir=n>cur?1:-1;cur=n;
+    if(reduced){a.classList.remove('is-active');b.classList.add('is-active');setScene(n);return}
+    lock=true;target=dir*WARP;
+    a.classList.add(dir>0?'leave-fwd':'leave-back');
+    flash.classList.remove('on');void flash.offsetWidth;flash.classList.add('on');
+    setTimeout(function(){b.classList.add('is-active',dir>0?'enter-fwd':'enter-back');setScene(n)},420);
+    setTimeout(function(){a.classList.remove('is-active','leave-fwd','leave-back');target=IDLE},760);
+    setTimeout(function(){b.classList.remove('enter-fwd','enter-back');lock=false},1320);
+  }
+  slides.forEach(function(s,i){var b=document.createElement('button');b.innerHTML='<span></span>';b.addEventListener('click',function(){go(i)});route.appendChild(b)});
+  function labels(){slides.forEach(function(s,i){var t=lang==='en'?s.dataset.nameEn:lang==='hy'?HY[s.dataset.nameEn]:s.dataset.name;route.children[i].firstChild.textContent=t;route.children[i].setAttribute('aria-label',t)})}
+
+  var wheelAt=0;
+  addEventListener('wheel',function(e){var now=Date.now();if(now-wheelAt<1500||Math.abs(e.deltaY)<18)return;wheelAt=now;go(cur+(e.deltaY>0?1:-1))},{passive:true});
+  addEventListener('keydown',function(e){
+    if(['ArrowDown','PageDown',' ','ArrowRight'].indexOf(e.key)>-1){if(e.key===' '&&e.target.tagName==='BUTTON')return;e.preventDefault();go(cur+1)}
+    else if(['ArrowUp','PageUp','ArrowLeft'].indexOf(e.key)>-1){e.preventDefault();go(cur-1)}
+    else if(e.key==='Home')go(0);else if(e.key==='End')go(slides.length-1)});
+  var ty=0,tx=0;
+  addEventListener('touchstart',function(e){ty=e.touches[0].clientY;tx=e.touches[0].clientX},{passive:true});
+  addEventListener('touchend',function(e){var dy=e.changedTouches[0].clientY-ty,dx=e.changedTouches[0].clientX-tx;if(Math.abs(dy)>48&&Math.abs(dy)>Math.abs(dx)*1.3)go(cur+(dy<0?1:-1))},{passive:true});
+  document.getElementById('launch').addEventListener('click',function(){go(1)});
+  document.getElementById('next').addEventListener('click',function(){go(cur+1)});
+  document.getElementById('again').addEventListener('click',function(){go(0)});
+  [].forEach.call(document.querySelectorAll('a[data-ph]'),function(a){a.addEventListener('click',function(e){e.preventDefault()})});
+
+  /* ---------- RU / EN ---------- */
+  var tr=[].slice.call(document.querySelectorAll('[data-en]'));
+  var HY={
+    'Launch':'Մեկնարկ','About':'Իմ մասին','Skills':'Հմտություններ','Works':'Աշխատանքներ','Contact':'Կապ',
+    'Interactive CV · 2026':'Ինտերակտիվ CV · 2026','Vika':'Վիկա','Gezalyan':'Գյոզալյան',
+    'Content producer':'Կոնտենտ պրոդյուսեր','Reels maker':'Reels-մեյքեր','AI creator':'AI-կրեատոր',
+    'Ijevan, Armenia':'Իջևան, Հայաստան','Open to relocation':'Պատրաստ եմ տեղափոխվելու','Start the flight →':'Սկսել թռիչքը →',
+    'Scene 02 · About':'Տեսարան 02 · Իմ մասին',
+    'I shoot, edit and generate content ':'Նկարահանում, մոնտաժում և գեներացնում եմ կոնտենտ, ',
+    'people watch to the end':'որը դիտում են մինչև վերջ',
+    'I run social media, produce shoots and build reels end to end — from the idea and script to the edit and publishing. Where a shoot is impossible or too expensive, I solve it with neural networks: AI video and AI photo.':'Վարում եմ սոցիալական ցանցեր, պրոդյուսում եմ նկարահանումներ և ստեղծում ռիլսեր սկզբից մինչև վերջ՝ գաղափարից ու սցենարից մինչև մոնտաժ և հրապարակում։ Երբ նկարահանումն անհնար է կամ շատ թանկ, խնդիրը լուծում եմ նեյրոցանցերով՝ AI-վիդեո և AI-ֆոտո։',
+    'Age':'Տարիք','22':'22 տարեկան','Base':'Վայր','Status':'Կարգավիճակ',
+    'Scene 03 · Skills':'Տեսարան 03 · Հմտություններ','Six orbits — ':'Վեց ուղեծիր — ','one production':'մեկ պրոդաքշն',
+    'Strategy, content plan, account management':'Ռազմավարություն, կոնտենտ-պլան, էջերի վարում',
+    'Shoot production':'Նկարահանումների պրոդյուսինգ','Idea, script, crew, location — reels end to end':'Գաղափար, սցենար, թիմ, լոկացիա — ռիլսեր սկզբից մինչև վերջ',
+    'Reels making':'Reels-մեյքինգ','Hooks, pacing, trends, retention':'Հուքեր, դինամիկա, թրենդներ, դիտողի պահում',
+    'Editing':'Մոնտաժ','Cuts, rhythm, captions, sound, color':'Կտրվածքներ, ռիթմ, տիտրեր, ձայն, գույն',
+    'AI video':'AI-վիդեո','Scenes and clips generated with neural networks':'Նեյրոցանցերով ստեղծված տեսարաններ և հոլովակներ',
+    'AI photo':'AI-ֆոտո','Photo sets and visuals without a shoot':'Ֆոտոսեթեր և վիզուալներ առանց նկարահանման',
+    'Scene 04 · Works':'Տեսարան 04 · Աշխատանքներ','Works ':'Աշխատանքներ ','in frame':'կադրում',
+    'On-site shoots':'Արտագնա նկարահանումներ','All':'Բոլորը','Shoots':'Նկարահանում',
+    'I travel to shoots: I organise the location, crew and process, and produce from brief to finished reel.':'Մեկնում եմ նկարահանումների՝ կազմակերպում եմ լոկացիան, թիմը և ընթացքը, պրոդյուսում եմ բրիֆից մինչև պատրաստի հոլովակ։',
+    'Production · shoot':'Պրոդյուսինգ · նկարահանում','Aura · flower shop':'Աուրա · ծաղկի խանութ',
+    'Chika · makeup fixing spray':'Chika · դիմահարդարման ֆիքսատոր',
+    'Sun Garden · chef':'Sun Garden · շեֆ-խոհարար','For a blogger':'Բլոգերի համար','More works coming soon':'Շուտով՝ նոր աշխատանքներ',
+    'Tap a frame — it opens full screen, video with sound.':'Սեղմիր կադրին՝ կբացվի ամբողջ էկրանով, վիդեոն՝ ձայնով։',
+    'Scene 05 · Contact':'Տեսարան 05 · Կապ',"Let's get ":'Եկեք ','in touch':'կապվենք',
+    'Open to projects and job offers with relocation.':'Բաց եմ նախագծերի և աշխատանքի առաջարկների համար՝ տեղափոխվելու պատրաստակամությամբ։',
+    '↑ Back to launch':'↑ Դեպի մեկնարկ','scroll · swipe · ↓':'թերթիր · սվայփ · ↓'};
+  var LANGS=['hy','ru','en'];
+  tr.forEach(function(el){el.dataset.ru=el.textContent;el.dataset.hy=HY[el.dataset.en]||el.dataset.en});
+  function setLang(l){lang=l;tr.forEach(function(el){el.textContent=el.dataset[l]});labels();
+    LANGS.forEach(function(k){document.getElementById(k).setAttribute('aria-pressed',k===l)});
+    document.documentElement.lang=l;try{localStorage.setItem('vg-lang2',l)}catch(e){}}
+  LANGS.forEach(function(k){document.getElementById(k).addEventListener('click',function(){setLang(k)})});
+  var saved='hy';try{saved=localStorage.getItem('vg-lang2')||'hy'}catch(e){}
+
+  resize();setLang(LANGS.indexOf(saved)>-1?saved:'hy');setScene(0);requestAnimationFrame(frame);
+})();
+</script>
