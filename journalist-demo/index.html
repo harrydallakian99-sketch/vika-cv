@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Name Surname — Journalist</title>
-<meta name="description" content="Journalist portfolio">
+<title>Nare Avetisyan — Journalist</title>
+<meta name="description" content="Demo journalist portfolio (fictional person)">
 <meta name="theme-color" content="#f7faff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -124,6 +124,10 @@ p{margin:0;font-size:clamp(15px,1.4vw,18px);line-height:1.7;color:#33445e;max-wi
 .card--v.ph .cap{background:none;color:var(--ink)}
 .card--v.ph .cap b{color:var(--acc)}
 .card--a.ph{background:rgba(255,255,255,.6)}
+/* demo video cover (no real footage) */
+.card--v.demo{background:linear-gradient(160deg,var(--g1),var(--g2))}
+.card--v.demo::before{content:"";position:absolute;left:50%;top:44%;translate:-50% -50%;width:54px;height:54px;border-radius:50%;border:1.5px solid rgba(255,255,255,.7)}
+.card--v.demo .cap{background:none}
 .note{font-size:12.5px;color:var(--dim)}
 
 .lightbox{position:fixed;inset:0;z-index:20;background:rgba(247,250,255,.96);display:grid;place-items:center;padding:calc(20px + env(safe-area-inset-top,0px)) 16px calc(20px + env(safe-area-inset-bottom,0px))}
@@ -199,14 +203,14 @@ p{margin:0;font-size:clamp(15px,1.4vw,18px);line-height:1.7;color:#33445e;max-wi
     <div class="quote" aria-hidden="true">“</div>
     <div class="content">
       <div class="eyebrow" data-en="Journalist · Portfolio 2026">Журналист · Портфолио 2026</div>
-      <h1><span data-en="Name">Имя</span><em data-en="Surname">Фамилия</em></h1>
+      <h1><span data-en="Nare">Наре</span><em data-en="Avetisyan">Аветисян</em></h1>
       <ul class="roles">
         <li data-en="Reporter">Репортёр</li>
         <li data-en="Editor">Редактор</li>
-        <li data-en="TV host">Телеведущий(ая)</li>
+        <li data-en="TV host">Телеведущая</li>
         <li data-en="Interviewer">Интервьюер</li>
       </ul>
-      <div class="meta" data-en="City, Country">Город, Страна</div>
+      <div class="meta" data-en="Yerevan, Armenia">Ереван, Армения</div>
       <button class="cta" id="launch" data-en="Read →">Читать →</button>
     </div>
   </section>
@@ -217,11 +221,11 @@ p{margin:0;font-size:clamp(15px,1.4vw,18px);line-height:1.7;color:#33445e;max-wi
     <div class="content">
       <div class="eyebrow" data-en="About">Обо мне</div>
       <h2><span data-en="I tell stories ">Рассказываю истории, </span><em data-en="that matter">которые важны</em></h2>
-      <p class="lead" data-en="One strong sentence about your mission as a journalist. Replace it with the real one.">Одно сильное предложение о вашей миссии как журналиста. Замените его на настоящее.</p>
-      <p data-en="Two or three sentences about experience, outlets you worked with and the formats you work in: articles, reports, interviews, TV.">Два-три предложения об опыте, изданиях, с которыми работали, и форматах: статьи, репортажи, интервью, ТВ.</p>
+      <p class="lead" data-en="Good journalism starts with listening: behind every story there is a person.">Хорошая журналистика начинается с умения слушать: за каждой историей стоит человек.</p>
+      <p data-en="For eight years I have covered society and culture for print, online and TV newsrooms. I write long reads, film video reports and host a weekly interview show “Face to Face”.">Восемь лет пишу об обществе и культуре для печатных, онлайн- и телередакций. Пишу лонгриды, снимаю видеорепортажи и веду еженедельное интервью-шоу «Лицом к лицу».</p>
       <dl class="facts">
-        <div><dt data-en="Experience">Опыт</dt><dd data-en="X years">X лет</dd></div>
-        <div><dt data-en="Publications">Публикации</dt><dd>100+</dd></div>
+        <div><dt data-en="Experience">Опыт</dt><dd data-en="8 years">8 лет</dd></div>
+        <div><dt data-en="Publications">Публикации</dt><dd>450+</dd></div>
         <div><dt data-en="Languages">Языки</dt><dd data-en="HY · RU · EN">HY · RU · EN</dd></div>
       </dl>
     </div>
@@ -234,12 +238,12 @@ p{margin:0;font-size:clamp(15px,1.4vw,18px);line-height:1.7;color:#33445e;max-wi
       <div class="eyebrow" data-en="Beats">Темы</div>
       <h2><span data-en="What I ">О чём я </span><em data-en="write about">пишу</em></h2>
       <ul class="beats">
-        <li><strong data-en="Society">Общество</strong><span data-en="Short description">Короткое описание</span></li>
-        <li><strong data-en="Politics">Политика</strong><span data-en="Short description">Короткое описание</span></li>
-        <li><strong data-en="Culture">Культура</strong><span data-en="Short description">Короткое описание</span></li>
-        <li><strong data-en="Economy">Экономика</strong><span data-en="Short description">Короткое описание</span></li>
-        <li><strong data-en="Investigations">Расследования</strong><span data-en="Short description">Короткое описание</span></li>
-        <li><strong data-en="Interviews">Интервью</strong><span data-en="Short description">Короткое описание</span></li>
+        <li><strong data-en="Society">Общество</strong><span data-en="Education, healthcare, social justice">Образование, здравоохранение, социальная справедливость</span></li>
+        <li><strong data-en="Culture">Культура</strong><span data-en="Theatre, cinema, heritage">Театр, кино, наследие</span></li>
+        <li><strong data-en="Regions">Регионы</strong><span data-en="Life outside the capital">Жизнь за пределами столицы</span></li>
+        <li><strong data-en="Economy">Экономика</strong><span data-en="Small business, startups, prices">Малый бизнес, стартапы, цены</span></li>
+        <li><strong data-en="Investigations">Расследования</strong><span data-en="Public spending and procurement">Бюджетные расходы и госзакупки</span></li>
+        <li><strong data-en="Interviews">Интервью</strong><span data-en="Artists, scientists, officials">Деятели искусства, учёные, чиновники</span></li>
       </ul>
     </div>
   </section>
@@ -257,38 +261,32 @@ p{margin:0;font-size:clamp(15px,1.4vw,18px);line-height:1.7;color:#33445e;max-wi
         <button data-f="int" aria-pressed="false" data-en="Interviews">Интервью</button>
       </div>
       <div class="reel-strip" id="strip">
-        <!-- Real article card (opens the outlet's link):
-        <a class="card card--a" data-cat="art" href="https://..." target="_blank" rel="noopener">
-          <span class="src">Outlet · 12.03.2026</span>
-          <h3 data-en="Headline">Заголовок</h3>
-          <span class="ex" data-en="One-line summary">Краткое описание</span>
+        <!-- Demo content: outlets and links are fictional. Real cards: see journalist/index.html -->
+        <a class="card card--a" data-cat="art" href="#" data-ph>
+          <span class="src" data-en="Daily Voice · 14.08.2026">Голос дня · 14.08.2026</span>
+          <h3 data-en="How village schools in Tavush got a second life">Как сельские школы Тавуша получили вторую жизнь</h3>
+          <span class="ex" data-en="A year inside three schools that were saved by their own graduates.">Год внутри трёх школ, которые спасли их собственные выпускники.</span>
           <span class="more" data-en="Read">Читать</span>
         </a>
-        Real video card (opens full screen; card--w = horizontal 16:10, without it = vertical 9:16):
-        <button class="card card--v card--w" data-cat="vid" data-src="assets/NAME.mp4" aria-label="Report — video">
-          <video muted loop playsinline preload="none" poster="assets/NAME.jpg" src="assets/NAME.mp4"></video>
-          <span class="cap"><b data-en="Video report">Видеорепортаж</b><span data-en="Channel · topic">Канал · тема</span></span>
-        </button>
-        -->
-        <a class="card card--a ph" data-cat="art" href="#" data-ph>
-          <span class="src" data-en="Outlet · 00.00.2026">Издание · 00.00.2026</span>
-          <h3 data-en="Article headline goes here">Здесь будет заголовок статьи</h3>
-          <span class="ex" data-en="A one- or two-line summary of the story and why it matters.">Краткое описание материала в одну-две строки и почему он важен.</span>
+        <div class="card card--v card--w demo" data-cat="vid" style="--g1:#2566d8;--g2:#0f2340"><span class="cap"><b data-en="Video report">Видеорепортаж</b><span data-en="Channel 9 · The carpet makers of Ijevan">Канал 9 · Ковровщицы Иджевана</span></span></div>
+        <a class="card card--a" data-cat="int" href="#" data-ph>
+          <span class="src" data-en="City Chronicle · 02.07.2026">Городская хроника · 02.07.2026</span>
+          <h3 data-en="“The stage taught me to listen”: a theatre director on 40 years in theatre">«Сцена научила меня слушать»: режиссёр о 40 годах в театре</h3>
+          <span class="ex" data-en="About censorship, touring and the new generation of actors.">О цензуре, гастролях и новом поколении актёров.</span>
           <span class="more" data-en="Read">Читать</span>
         </a>
-        <div class="card card--v card--w ph" data-cat="vid"><span class="cap"><b data-en="Video report">Видеорепортаж</b><span data-en="Channel · topic">Канал · тема</span></span></div>
-        <a class="card card--a ph" data-cat="int" href="#" data-ph>
-          <span class="src" data-en="Outlet · 00.00.2026">Издание · 00.00.2026</span>
-          <h3 data-en="Interview with a guest">Интервью с гостем</h3>
-          <span class="ex" data-en="A one- or two-line summary of the story and why it matters.">Краткое описание материала в одну-две строки и почему он важен.</span>
+        <div class="card card--v demo" data-cat="vid" style="--g1:#8fb9ee;--g2:#2566d8"><span class="cap"><b data-en="Video report">Видеорепортаж</b><span data-en="Reels · Yerevan night markets">Reels · Ночные рынки Еревана</span></span></div>
+        <a class="card card--a" data-cat="art" href="#" data-ph>
+          <span class="src" data-en="Daily Voice · 19.05.2026">Голос дня · 19.05.2026</span>
+          <h3 data-en="Where does the city's playground budget go?">Куда уходит городской бюджет на детские площадки?</h3>
+          <span class="ex" data-en="A three-month investigation into 212 procurement contracts.">Трёхмесячное расследование 212 контрактов госзакупок.</span>
           <span class="more" data-en="Read">Читать</span>
         </a>
-        <div class="card card--v ph" data-cat="vid"><span class="cap"><b data-en="Video report">Видеорепортаж</b><span data-en="Channel · topic">Канал · тема</span></span></div>
-        <a class="card card--a ph" data-cat="art" href="#" data-ph>
-          <span class="src" data-en="Outlet · 00.00.2026">Издание · 00.00.2026</span>
-          <h3 data-en="Article headline goes here">Здесь будет заголовок статьи</h3>
-          <span class="ex" data-en="A one- or two-line summary of the story and why it matters.">Краткое описание материала в одну-две строки и почему он важен.</span>
-          <span class="more" data-en="Read">Читать</span>
+        <a class="card card--a" data-cat="int" href="#" data-ph>
+          <span class="src" data-en="Channel 9 · 10.04.2026">Канал 9 · 10.04.2026</span>
+          <h3 data-en="“Face to Face”: a young astrophysicist on returning home">«Лицом к лицу»: молодой астрофизик о возвращении домой</h3>
+          <span class="ex" data-en="Why she left a lab in Europe to teach in Gyumri.">Почему она оставила лабораторию в Европе ради преподавания в Гюмри.</span>
+          <span class="more" data-en="Watch">Смотреть</span>
         </a>
       </div>
       <div class="note" data-en="Articles open on the outlet's site, videos open full screen.">Статьи открываются на сайте издания, видео — на весь экран.</div>
@@ -301,12 +299,12 @@ p{margin:0;font-size:clamp(15px,1.4vw,18px);line-height:1.7;color:#33445e;max-wi
     <div class="content">
       <div class="eyebrow" data-en="Contact">Контакт</div>
       <h2><span data-en="Have a story? ">Есть история? </span><em data-en="Write to me">Напишите мне</em></h2>
-      <p data-en="Open to collaborations, interviews and editorial offers.">Открыт(а) к сотрудничеству, интервью и редакционным предложениям.</p>
+      <p data-en="Open to collaborations, interviews and editorial offers.">Открыта к сотрудничеству, интервью и редакционным предложениям.</p>
       <div class="links">
-        <a href="mailto:name@example.com"><span>Email</span>name@example.com</a>
-        <a href="https://t.me/USERNAME" target="_blank" rel="noopener"><span>Telegram</span>@USERNAME</a>
-        <a href="https://instagram.com/USERNAME" target="_blank" rel="noopener"><span>Instagram</span>@USERNAME</a>
-        <a href="tel:+37400000000"><span data-en="Phone">Телефон</span>+374 00 000 000</a>
+        <a href="mailto:nare@example.com"><span>Email</span>nare@example.com</a>
+        <a href="#" data-ph><span>Telegram</span>@nare_demo</a>
+        <a href="#" data-ph><span>Instagram</span>@nare_demo</a>
+        <a href="#" data-ph><span data-en="Phone">Телефон</span>+374 00 000 000</a>
       </div>
       <button class="cta" id="again" data-en="↑ Front page">↑ На главную</button>
     </div>
@@ -318,8 +316,8 @@ p{margin:0;font-size:clamp(15px,1.4vw,18px);line-height:1.7;color:#33445e;max-wi
 
 <div class="hud">
   <div class="mast">
-    <div class="mark"><span data-en="N. Surname">И. Фамилия</span><em>.</em></div>
-    <div class="edition" data-en="Portfolio · Edition 2026">Портфолио · Выпуск 2026</div>
+    <div class="mark"><span data-en="N. Avetisyan">Н. Аветисян</span><em>.</em></div>
+    <div class="edition" data-en="Demo edition 2026">Демо-выпуск 2026</div>
     <div class="lang" role="group" aria-label="Language">
       <button id="hy" aria-pressed="true">ՀԱՅ</button><button id="ru" aria-pressed="false">RU</button><button id="en" aria-pressed="false">EN</button>
     </div>
@@ -396,21 +394,37 @@ p{margin:0;font-size:clamp(15px,1.4vw,18px);line-height:1.7;color:#33445e;max-wi
   var tr=[].slice.call(document.querySelectorAll('[data-en]'));
   var HY={
     'Front page':'Գլխավոր','About':'Իմ մասին','Beats':'Թեմաներ','Publications':'Հրապարակումներ','Contact':'Կապ',
-    'Journalist · Portfolio 2026':'Լրագրող · Պորտֆոլիո 2026','Name':'Անուն','Surname':'Ազգանուն','N. Surname':'Ա. Ազգանուն',
-    'Portfolio · Edition 2026':'Պորտֆոլիո · Թողարկում 2026',
+    'Journalist · Portfolio 2026':'Լրագրող · Պորտֆոլիո 2026','Nare':'Նարե','Avetisyan':'Ավետիսյան','N. Avetisyan':'Ն. Ավետիսյան',
+    'Demo edition 2026':'Դեմո թողարկում 2026',
     'Reporter':'Թղթակից','Editor':'Խմբագիր','TV host':'Հաղորդավար','Interviewer':'Հարցազրուցավար',
-    'City, Country':'Քաղաք, Երկիր','Read →':'Կարդալ →',
+    'Yerevan, Armenia':'Երևան, Հայաստան','Read →':'Կարդալ →',
     'I tell stories ':'Պատմում եմ պատմություններ, ','that matter':'որոնք կարևոր են',
-    'One strong sentence about your mission as a journalist. Replace it with the real one.':'Մեկ ուժեղ նախադասություն որպես լրագրող ձեր առաքելության մասին։ Փոխարինեք այն իրականով։',
-    'Two or three sentences about experience, outlets you worked with and the formats you work in: articles, reports, interviews, TV.':'Երկու-երեք նախադասություն փորձի, լրատվամիջոցների, որոնց հետ աշխատել եք, և ձևաչափերի մասին՝ հոդվածներ, ռեպորտաժներ, հարցազրույցներ, հեռուստատեսություն։',
-    'Experience':'Փորձ','X years':'X տարի','Languages':'Լեզուներ','HY · RU · EN':'ՀԱՅ · RU · EN',
+    'Good journalism starts with listening: behind every story there is a person.':'Լավ լրագրությունը սկսվում է լսելուց. յուրաքանչյուր պատմության հետևում մարդ կա։',
+    'For eight years I have covered society and culture for print, online and TV newsrooms. I write long reads, film video reports and host a weekly interview show “Face to Face”.':'Ութ տարի է՝ գրում եմ հասարակության և մշակույթի մասին տպագիր, առցանց և հեռուստատեսային խմբագրությունների համար։ Գրում եմ լոնգրիդներ, նկարահանում եմ վիդեոռեպորտաժներ և վարում եմ «Դեմ առ դեմ» շաբաթական հարցազրույցների հաղորդումը։',
+    'Experience':'Փորձ','8 years':'8 տարի','Languages':'Լեզուներ','HY · RU · EN':'ՀԱՅ · RU · EN',
     'What I ':'Ինչի՛ մասին եմ ','write about':'գրում',
-    'Society':'Հասարակություն','Politics':'Քաղաքականություն','Culture':'Մշակույթ','Economy':'Տնտեսություն',
-    'Investigations':'Հետաքննություններ','Interviews':'Հարցազրույցներ','Short description':'Կարճ նկարագրություն',
+    'Society':'Հասարակություն','Education, healthcare, social justice':'Կրթություն, առողջապահություն, սոցիալական արդարություն',
+    'Culture':'Մշակույթ','Theatre, cinema, heritage':'Թատրոն, կինո, ժառանգություն',
+    'Regions':'Մարզեր','Life outside the capital':'Կյանքը մայրաքաղաքից դուրս',
+    'Economy':'Տնտեսություն','Small business, startups, prices':'Փոքր բիզնես, ստարտափներ, գներ',
+    'Investigations':'Հետաքննություններ','Public spending and procurement':'Բյուջետային ծախսեր և պետգնումներ',
+    'Interviews':'Հարցազրույցներ','Artists, scientists, officials':'Արվեստագետներ, գիտնականներ, պաշտոնյաներ',
     'Selected ':'Ընտրված ','stories':'նյութեր','All':'Բոլորը','Articles':'Հոդվածներ','Video reports':'Վիդեոռեպորտաժներ',
-    'Outlet · 00.00.2026':'Լրատվամիջոց · 00.00.2026','Article headline goes here':'Այստեղ կլինի հոդվածի վերնագիրը',
-    'A one- or two-line summary of the story and why it matters.':'Նյութի համառոտ նկարագրություն մեկ-երկու տողով և ինչու է այն կարևոր։',
-    'Read':'Կարդալ','Video report':'Վիդեոռեպորտաժ','Channel · topic':'Ալիք · թեմա','Interview with a guest':'Հարցազրույց հյուրի հետ',
+    'Daily Voice · 14.08.2026':'Օրվա ձայն · 14.08.2026',
+    'How village schools in Tavush got a second life':'Ինչպես Տավուշի գյուղական դպրոցները ստացան երկրորդ կյանք',
+    'A year inside three schools that were saved by their own graduates.':'Մեկ տարի երեք դպրոցներում, որոնք փրկեցին իրենց իսկ շրջանավարտները։',
+    'Video report':'Վիդեոռեպորտաժ','Channel 9 · The carpet makers of Ijevan':'Ալիք 9 · Իջևանի գորգագործուհիները',
+    'City Chronicle · 02.07.2026':'Քաղաքի տարեգրություն · 02.07.2026',
+    '“The stage taught me to listen”: a theatre director on 40 years in theatre':'«Բեմն ինձ սովորեցրեց լսել». ռեժիսորը՝ թատրոնում անցկացրած 40 տարիների մասին',
+    'About censorship, touring and the new generation of actors.':'Գրաքննության, հյուրախաղերի և դերասանների նոր սերնդի մասին։',
+    'Reels · Yerevan night markets':'Reels · Երևանի գիշերային շուկաները',
+    'Daily Voice · 19.05.2026':'Օրվա ձայն · 19.05.2026',
+    "Where does the city's playground budget go?":'Ո՞ւր է գնում խաղահրապարակների քաղաքային բյուջեն',
+    'A three-month investigation into 212 procurement contracts.':'Եռամսյա հետաքննություն՝ պետգնումների 212 պայմանագրի մասին։',
+    'Channel 9 · 10.04.2026':'Ալիք 9 · 10.04.2026',
+    '“Face to Face”: a young astrophysicist on returning home':'«Դեմ առ դեմ». երիտասարդ աստղաֆիզիկոսը՝ տուն վերադառնալու մասին',
+    'Why she left a lab in Europe to teach in Gyumri.':'Ինչու նա թողեց լաբորատորիան Եվրոպայում՝ Գյումրիում դասավանդելու համար։',
+    'Read':'Կարդալ','Watch':'Դիտել',
     "Articles open on the outlet's site, videos open full screen.":'Հոդվածները բացվում են լրատվամիջոցի կայքում, վիդեոները՝ ամբողջ էկրանով։',
     'Have a story? ':'Պատմություն ունե՞ք։ ','Write to me':'Գրեք ինձ',
     'Open to collaborations, interviews and editorial offers.':'Բաց եմ համագործակցության, հարցազրույցների և խմբագրական առաջարկների համար։',
@@ -419,9 +433,9 @@ p{margin:0;font-size:clamp(15px,1.4vw,18px);line-height:1.7;color:#33445e;max-wi
   tr.forEach(function(el){el.dataset.ru=el.textContent;el.dataset.hy=HY[el.dataset.en]||el.dataset.en});
   function setLang(l){lang=l;tr.forEach(function(el){el.textContent=el.dataset[l]});labels();
     LANGS.forEach(function(k){document.getElementById(k).setAttribute('aria-pressed',k===l)});
-    document.documentElement.lang=l;try{localStorage.setItem('jr-lang',l)}catch(e){}}
+    document.documentElement.lang=l;try{localStorage.setItem('jrd-lang',l)}catch(e){}}
   LANGS.forEach(function(k){document.getElementById(k).addEventListener('click',function(){setLang(k)})});
-  var saved='hy';try{saved=localStorage.getItem('jr-lang')||'hy'}catch(e){}
+  var saved='hy';try{saved=localStorage.getItem('jrd-lang')||'hy'}catch(e){}
 
   setLang(LANGS.indexOf(saved)>-1?saved:'hy');setScene(0);
 })();
