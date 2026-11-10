@@ -2,8 +2,7 @@
 // Usage: ?lang=ru | ?lang=en (default hy). Text nodes are matched by exact trimmed text.
 (function(){
   const T = {
-    'Curriculum Vitae · 2026':['Резюме · 2026','Curriculum Vitae · 2026'],
-    'Լրագրություն · TV · SMM':['Журналистика · TV · SMM','Journalism · TV · SMM'],
+        'Լրագրություն · TV':['Журналистика · TV','Journalism · TV'],
     'Սիլվի':['Сильви','Silvi'],
     'Սիրականյան':['Сираканян','Sirakanyan'],
     'Սիլվի Սիրականյան':['Сильви Сираканян','Silvi Sirakanyan'],
@@ -93,18 +92,4 @@
     document.documentElement.lang = lang;
     document.title = (lang === 'ru' ? 'Сильви Сираканян — Резюме' : 'Silvi Sirakanyan — CV');
   }
-  // on-screen switcher (hidden in print)
-  const bar = document.createElement('nav');
-  bar.className = 'lang-switch';
-  bar.innerHTML = ['hy:ՀԱՅ','ru:RU','en:EN'].map(x => {
-    const [c, l] = x.split(':');
-    return `<a href="?lang=${c}"${c === lang ? ' aria-current="true"' : ''}>${l}</a>`;
-  }).join('');
-  document.body.appendChild(bar);
-  const st = document.createElement('style');
-  st.textContent = `.lang-switch{position:fixed;top:12px;right:12px;display:flex;gap:4px;z-index:9;font:600 12px/1 system-ui,sans-serif}
-  .lang-switch a{padding:8px 10px;border-radius:8px;background:#fff;color:#222;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.15)}
-  .lang-switch a[aria-current]{background:#222;color:#fff}
-  @media print{.lang-switch{display:none}}`;
-  document.head.appendChild(st);
 })();
