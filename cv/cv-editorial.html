@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Վիկա Գյոզալյան — CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Armenian:wght@400;600;800;900&family=Noto+Sans+Armenian:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Variant A — "Editorial / Broadcast": paper, ink, on-air red */
+  :root{
+    --paper:#f6f1e9; --ink:#17151a; --muted:#6c655e; --line:#ddd3c4;
+    --red:#d7263d; --soft:#efe6d8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  @page{size:A4;margin:0}
+  html{background:#cfc8bd}
+  body{font-family:'Noto Sans Armenian',system-ui,sans-serif;color:var(--ink);
+       -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{width:210mm;height:297mm;margin:24px auto;background:var(--paper);
+        box-shadow:0 20px 60px rgba(0,0,0,.18);position:relative;overflow:hidden;
+        padding:13mm 15mm 11mm;display:flex;flex-direction:column}
+  @media print{html{background:none}.page{margin:0;box-shadow:none}}
+
+  /* header */
+  .top{display:flex;justify-content:space-between;align-items:center;
+       font-size:8.5pt;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+       border-bottom:1.5px solid var(--ink);padding-bottom:3mm}
+  .onair{display:inline-flex;align-items:center;gap:2mm;color:var(--red);font-weight:700}
+  .onair::before{content:"";width:2.4mm;height:2.4mm;border-radius:50%;background:var(--red);
+       box-shadow:0 0 0 1mm rgba(215,38,61,.18)}
+  h1{font-family:'Noto Serif Armenian',serif;font-weight:900;font-size:38pt;line-height:1;
+     letter-spacing:-.01em;margin-top:6mm}
+  h1 em{font-style:normal;color:var(--red)}
+  .role{margin-top:3.5mm;font-size:11.5pt;font-weight:500}
+  .role span{color:var(--red);margin:0 1.6mm}
+  .lead{margin-top:5mm;display:grid;grid-template-columns:1fr 26mm;gap:8mm;align-items:end}
+  .lead p{font-family:'Noto Serif Armenian',serif;font-size:10.3pt;line-height:1.5;
+          border-left:3px solid var(--red);padding-left:4.5mm}
+  .qr{text-align:center;font-size:7pt;color:var(--muted);letter-spacing:.06em}
+  .qr img{width:22mm;height:22mm;display:block;margin:0 auto 1.5mm;border:1px solid var(--line)}
+
+  /* body grid */
+  .grid{display:grid;grid-template-columns:1fr 58mm;gap:8mm;margin-top:6mm;flex:1}
+  h2{font-family:'Noto Serif Armenian',serif;font-size:15pt;font-weight:800;
+     display:flex;align-items:baseline;gap:3mm;margin-bottom:2.5mm}
+  h2 small{font-family:'Noto Sans Armenian';font-size:7.5pt;font-weight:600;color:var(--red);
+           letter-spacing:.14em}
+  h2::after{content:"";flex:1;height:1px;background:var(--line);transform:translateY(-1.2mm)}
+  section+section{margin-top:5mm}
+
+  .tl{list-style:none}
+  .tl li{display:grid;grid-template-columns:23mm 1fr;gap:4mm;padding:1.7mm 0;
+         border-bottom:1px dashed var(--line)}
+  .tl li:last-child{border-bottom:0}
+  .yr{font-weight:700;font-size:9pt;color:var(--red);padding-top:.6mm;white-space:nowrap}
+  .tl b{display:block;font-size:10.5pt;font-weight:700;line-height:1.3}
+  .tl span{display:block;font-size:9pt;color:var(--muted);line-height:1.4;margin-top:.6mm}
+  .now{display:inline-block;margin-left:1.5mm;font-size:6.8pt;font-weight:700;letter-spacing:.1em;
+       color:#fff;background:var(--red);padding:.4mm 1.6mm;border-radius:1mm;vertical-align:2px}
+
+  aside .box{background:var(--soft);border-radius:2mm;padding:4mm 4.5mm}
+  aside .box+.box{margin-top:4mm}
+  aside h3{font-size:8pt;letter-spacing:.16em;text-transform:uppercase;color:var(--red);
+           font-weight:700;margin-bottom:3mm}
+  .contact{list-style:none;font-size:9pt;line-height:1.35}
+  .contact li{padding:1.1mm 0;border-bottom:1px solid var(--line)}
+  .contact li:last-child{border:0}
+  .contact small{display:block;font-size:7pt;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+  .tags{display:flex;flex-wrap:wrap;gap:1.6mm}
+  .tags span{font-size:8pt;padding:.9mm 2.4mm;border:1px solid var(--ink);border-radius:20mm;background:var(--paper)}
+  .tags span.hot{background:var(--ink);color:var(--paper)}
+  .langs{list-style:none;font-size:9pt}
+  .langs li{display:flex;justify-content:space-between;padding:1.2mm 0}
+  .langs i{font-style:normal;color:var(--muted)}
+
+  .foot{margin-top:4mm;padding-top:2.5mm;border-top:1.5px solid var(--ink);display:flex;
+        justify-content:space-between;font-size:7.5pt;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<main class="page">
+  <div class="top">
+    <span>Curriculum Vitae · 2026</span>
+    <span class="onair">Լրագրություն · SMM · AI</span>
+  </div>
+
+  <h1>Վիկա <em>Գյոզալյան</em></h1>
+  <div class="role">Լրագրող<span>/</span>SMM մասնագետ<span>/</span>Ռիլմեյքեր<span>/</span>AI կոնտենտ ստեղծող</div>
+
+  <div class="lead">
+    <p>2021 թվականից աշխատում եմ Հայաստանի Հանրային հեռուստաընկերությունում՝ մեդիա ակադեմիայից մինչև Լրատվական ծառայություն։ Հեռուստալրագրության կրթությունը համադրում եմ SMM-ի, մոնտաժի և նեյրոցանցերով կոնտենտի հմտությունների հետ՝ գաղափարից ու սցենարից մինչև պատրաստի ռիլս և հրապարակում։</p>
+    <div class="qr"><img src="../qr/vika-qr.svg" alt="QR — պորտֆոլիո">ՊՈՐՏՖՈԼԻՈ</div>
+  </div>
+
+  <div class="grid">
+    <div>
+      <section>
+        <h2>Աշխատանքային փորձ <small>EXPERIENCE</small></h2>
+        <ul class="tl">
+          <li><div class="yr">2024 — հիմա</div><div><b>Լրատվական ծառայության ադմինիստրատոր <i class="now">ՀԻՄԱ</i></b><span>Հայաստանի Հանրային հեռուստաընկերություն</span></div></li>
+          <li><div class="yr">2023 — 2024</div><div><b>Տնտեսական տնօրինության օգնական</b><span>Հայաստանի Հանրային հեռուստաընկերություն</span></div></li>
+          <li><div class="yr">2022</div><div><b>Կամավորների կոորդինատոր</b><span>Մանկական Եվրատեսիլ երգի մրցույթ · Junior Eurovision 2022, Երևան</span></div></li>
+          <li><div class="yr">2021 — 2022</div><div><b>Մեդիա ակադեմիայի կոորդինատոր</b><span>Հայաստանի Հանրային հեռուստաընկերություն</span></div></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Կրթություն <small>EDUCATION</small></h2>
+        <ul class="tl">
+          <li><div class="yr">2023</div><div><b>SMM Specialist</b><span>Genius Agency</span></div></li>
+          <li><div class="yr">2021</div><div><b>Հեռուստահաղորդավարություն և հեռուստալրագրություն</b><span>Հանրային հեռուստաընկերության Մեդիա ակադեմիա</span></div></li>
+          <li><div class="yr">2020 — 2024</div><div><b>Լրագրություն, բակալավր</b><span>Երևանի պետական համալսարան, Ժուռնալիստիկայի ֆակուլտետ</span></div></li>
+          <li><div class="yr">2019</div><div><b>Հեռուստահաղորդավարական դպրոց-ստուդիա</b><span>Գայանե Փայտյանի «TV Ideal»</span></div></li>
+          <li><div class="yr">2008 — 2020</div><div><b>Միջնակարգ կրթություն</b><span>Զովունու Ռուբիկ Բաղդասարյանի անվան միջնակարգ դպրոց</span></div></li>
+        </ul>
+      </section>
+    </div>
+
+    <aside>
+      <div class="box">
+        <h3>Կապ</h3>
+        <ul class="contact">
+          <li><small>Հեռախոս</small>+374 93 660 683</li>
+          <li><small>Telegram</small>@vika_gyozalyan</li>
+          <li><small>Instagram</small>@vvvikas_blog</li>
+          <li><small>Պորտֆոլիո</small>vika.77-233-220-78.sslip.io</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Հմտություններ</h3>
+        <div class="tags">
+          <span class="hot">SMM</span><span class="hot">Ռիլսեր</span><span class="hot">AI կոնտենտ</span>
+          <span>Մոնտաժ</span><span>Սցենար և հուքեր</span><span>Պրոդյուսինգ</span>
+          <span>Հեռուստալրագրություն</span><span>Հաղորդավարություն</span><span>Կոորդինացում</span>
+          <span>Ադմինիստրացիա</span><span>AI-վիդեո</span><span>AI-ֆոտո</span>
+        </div>
+      </div>
+      <div class="box">
+        <h3>Լեզուներ</h3>
+        <ul class="langs">
+          <li>Հայերեն <i>մայրենի</i></li>
+          <li>Ռուսերեն <i>ազատ</i></li>
+          <li>Անգլերեն <i>աշխատանքային</i></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <div class="foot"><span>Վիկա Գյոզալյան</span><span>Երևան, Հայաստան</span></div>
+</main>
+</body>
+</html>
