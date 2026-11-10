@@ -35,6 +35,14 @@
   h1 em{font-style:normal;color:var(--red)}
   .role{margin-top:3.5mm;font-size:11.5pt;font-weight:500}
   .role span{color:var(--red);margin:0 1.6mm}
+  .hero{display:grid;grid-template-columns:42mm 1fr;gap:7mm;margin-top:6mm;align-items:start}
+  .photo{width:42mm;height:52.5mm;object-fit:cover;border-radius:2mm;display:block;
+         box-shadow:3mm 3mm 0 var(--red)}
+  .hero h1{margin-top:0;font-size:31pt}
+  .pat{margin-top:2mm;font-size:9pt;color:var(--muted);letter-spacing:.04em}
+  .lp{margin-top:3.5mm;font-family:'Noto Serif Armenian','Noto Serif',serif;font-size:9.6pt;line-height:1.45;
+      border-left:3px solid var(--red);padding-left:4mm}
+  .role{font-size:10.5pt!important}
   .lead{margin-top:5mm;display:grid;grid-template-columns:1fr 26mm;gap:8mm;align-items:end}
   .lead p{font-family:'Noto Serif Armenian','Noto Serif',serif;font-size:10.3pt;line-height:1.5;
           border-left:3px solid var(--red);padding-left:4.5mm}
@@ -43,7 +51,7 @@
   .age span{display:block;margin-top:2mm;font-size:6.8pt;letter-spacing:.02em}
 
   /* body grid */
-  .grid{display:grid;grid-template-columns:1fr 58mm;gap:8mm;margin-top:6mm;flex:1}
+  .grid{display:grid;grid-template-columns:1fr 58mm;gap:8mm;margin-top:5mm;flex:1}
   h2{font-family:'Noto Serif Armenian','Noto Serif',serif;font-size:15pt;font-weight:800;
      display:flex;align-items:baseline;gap:3mm;margin-bottom:2.5mm}
   h2 small{font-family:'Noto Sans Armenian','Noto Sans';font-size:7.5pt;font-weight:600;color:var(--red);
@@ -87,34 +95,36 @@
     <span class="onair">Լրագրություն · TV · SMM</span>
   </div>
 
-  <h1>Սիլվի <em>Սիրականյան</em></h1>
-  <div class="role">Լրագրող<span>/</span>Հեռուստալրագրող<span>/</span>SMM մասնագետ<span>/</span>Մեդիա ադմինիստրատոր</div>
-
-  <div class="lead">
-    <p>Լրագրող՝ Հայաստանի Հանրային հեռուստաընկերությունում 2021 թվականից աշխատանքային փորձով՝ Մեդիա ակադեմիայի կոորդինատորից մինչև Լրատվական ծառայության ադմինիստրատոր։ Ունեմ հեռուստալրագրության և հաղորդավարության կրթություն, SMM մասնագիտացում և խոշոր միջազգային միջոցառման կազմակերպման փորձ։ Կազմակերպված եմ, պատասխանատու և արագ եմ աշխատում ճնշման տակ։</p>
-    <div class="age"><b>24</b>ՏԱՐԵԿԱՆ<span>Հայրանուն՝ Գարիկի</span></div>
-  </div>
+  <header class="hero">
+    <img class="photo" src="silvi-photo.jpg" alt="Սիլվի Սիրականյան">
+    <div class="info">
+      <h1>Սիլվի <em>Սիրականյան</em></h1>
+      <div class="role">Լրագրող<span>/</span>Հեռուստալրագրող<span>/</span>SMM մասնագետ<span>/</span>Մեդիա ադմինիստրատոր</div>
+      <div class="pat">Գարիկի · 24 տարեկան</div>
+      <p class="lp">Լրագրող՝ Հայաստանի Հանրային հեռուստաընկերությունում 2021 թվականից աշխատանքային փորձով՝ Մեդիա ակադեմիայի կոորդինատորից մինչև Լրատվական ծառայության ադմինիստրատոր։ Ունեմ հեռուստալրագրության և հաղորդավարության կրթություն, SMM մասնագիտացում և խոշոր միջազգային միջոցառման կազմակերպման փորձ։</p>
+    </div>
+  </header>
 
   <div class="grid">
     <div>
       <section>
         <h2>Աշխատանքային փորձ <small>EXPERIENCE</small></h2>
         <ul class="tl">
-          <li><div class="yr">2024 — հիմա</div><div><b>Լրատվական ծառայության ադմինիստրատոր <i class="now">ՀԻՄԱ</i></b><span>Հայաստանի Հանրային հեռուստաընկերություն</span></div></li>
-          <li><div class="yr">2023 — 2024</div><div><b>Տնտեսական տնօրինության օգնական</b><span>Հայաստանի Հանրային հեռուստաընկերություն</span></div></li>
-          <li><div class="yr">2022</div><div><b>Կամավորների կոորդինատոր</b><span>Մանկական Եվրատեսիլ երգի մրցույթ · Junior Eurovision 2022, Երևան</span></div></li>
           <li><div class="yr">2021 — 2022</div><div><b>Մեդիա ակադեմիայի կոորդինատոր</b><span>Հայաստանի Հանրային հեռուստաընկերություն</span></div></li>
+          <li><div class="yr">2022</div><div><b>Կամավորների կոորդինատոր</b><span>Մանկական Եվրատեսիլ երգի մրցույթ · Junior Eurovision 2022, Երևան</span></div></li>
+          <li><div class="yr">2023 — 2024</div><div><b>Տնտեսական տնօրինության օգնական</b><span>Հայաստանի Հանրային հեռուստաընկերություն</span></div></li>
+          <li><div class="yr">2024 — հիմա</div><div><b>Լրատվական ծառայության ադմինիստրատոր <i class="now">ՀԻՄԱ</i></b><span>Հայաստանի Հանրային հեռուստաընկերություն</span></div></li>
         </ul>
       </section>
 
       <section>
         <h2>Կրթություն <small>EDUCATION</small></h2>
         <ul class="tl">
-          <li><div class="yr">2023</div><div><b>SMM Specialist</b><span>Genius Agency</span></div></li>
-          <li><div class="yr">2021</div><div><b>Հեռուստահաղորդավարություն և հեռուստալրագրություն</b><span>Հանրային հեռուստաընկերության Մեդիա ակադեմիա</span></div></li>
-          <li><div class="yr">2020 — 2024</div><div><b>Լրագրություն, բակալավր</b><span>Երևանի պետական համալսարան, Ժուռնալիստիկայի ֆակուլտետ</span></div></li>
-          <li><div class="yr">2019</div><div><b>Հեռուստահաղորդավարական դպրոց-ստուդիա</b><span>Գայանե Փայտյանի «TV Ideal»</span></div></li>
           <li><div class="yr">2008 — 2020</div><div><b>Միջնակարգ կրթություն</b><span>Զովունու Ռուբիկ Բաղդասարյանի անվան միջնակարգ դպրոց</span></div></li>
+          <li><div class="yr">2019</div><div><b>Հեռուստահաղորդավարական դպրոց-ստուդիա</b><span>Գայանե Փայտյանի «TV Ideal»</span></div></li>
+          <li><div class="yr">2020 — 2024</div><div><b>Լրագրություն, բակալավր</b><span>Երևանի պետական համալսարան, Ժուռնալիստիկայի ֆակուլտետ</span></div></li>
+          <li><div class="yr">2021</div><div><b>Հեռուստահաղորդավարություն և հեռուստալրագրություն</b><span>Հանրային հեռուստաընկերության Մեդիա ակադեմիա</span></div></li>
+          <li><div class="yr">2023</div><div><b>SMM Specialist</b><span>Genius Agency</span></div></li>
         </ul>
       </section>
     </div>
@@ -123,8 +133,8 @@
       <div class="box">
         <h3>Կապ</h3>
         <ul class="contact">
-          <li><small>Հեռախոս</small>+374 __ ___ ___</li>
-          <li><small>Էլ. փոստ</small>__________@gmail.com</li>
+          <li><small>Հեռախոս</small>+374 94 84 11 01</li>
+          <li><small>Էլ. փոստ</small>silvi.sirakanyan@mail.ru</li>
           <li><small>Բնակության վայր</small>Հայաստան</li>
         </ul>
       </div>
@@ -140,9 +150,9 @@
       <div class="box">
         <h3>Լեզուներ</h3>
         <ul class="langs">
-          <li>Հայերեն <i>մայրենի</i></li>
-          <li>Ռուսերեն <i>ազատ</i></li>
-          <li>Անգլերեն <i>աշխատանքային</i></li>
+          <li>Հայերեն</li>
+          <li>Ռուսերեն <i>B1</i></li>
+          <li>Անգլերեն <i>B1</i></li>
         </ul>
       </div>
     </aside>
